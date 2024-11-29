@@ -6,27 +6,26 @@ on:
 
 job:
   Continuous_Integration:
+    name: Creating CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the Repository
+        uses: actions/checkout@v2
 
-  name: Creating CI
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout the Repository
-      uses: actions/checkout@v2
+      - name: Set up Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18
 
-    - name: Set up Node
-      uses: actions/setup-node@v1
-      with:
-        node-version: 18
+      - name: Install Dependencies
+        run: npm install --legacy-peer-deps
 
-    - name: Install Dependencies
-      run: npm install --legacy-peer-deps
+      - name: Prisma Migrate
+        run: |
+          cd packages/db
+          npx prisma migrate deploy
 
-    - name: Prisma Migrate
-      run: |
-        cd packages/db
-        npx prisma migrate deploy
-
-    - name: Create Prisma Client
-      run: |
-        cd packages/db
-        npx prisma generate
+      - name: Create Prisma Client
+        run: |
+          cd packages/db
+          npx prisma generate
