@@ -1,3 +1,3 @@
 export default function () {
-  return <div>Transactions are pending hello okieeeee</div>;
+  return <div>Transactions are pnding</div>;
 }
