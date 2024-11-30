@@ -2,9 +2,10 @@ name: Creating CI
 
 on:
   pull_request:
-    branches: [migration]
+    branches:
+      - migration
 
-job:
+jobs:
   Continuous_Integration:
     name: Creating CI
     runs-on: ubuntu-latest
@@ -21,11 +22,15 @@ job:
         run: npm install --legacy-peer-deps
 
       - name: Prisma Migrate
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           cd packages/db
           npx prisma migrate deploy
 
       - name: Create Prisma Client
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           cd packages/db
           npx prisma generate

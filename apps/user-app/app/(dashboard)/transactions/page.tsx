@@ -1,3 +1,3 @@
 export default function () {
-  return <div>Transactions are pnding</div>;
+  return <div>Continuous Integration</div>;
 }
