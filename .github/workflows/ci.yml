@@ -2,9 +2,10 @@ name: Creating CI
 
 on:
   pull_request:
-    branches: [migration]
+    branches:
+      - migration
 
-job:
+jobs:
   Continuous_Integration:
     name: Creating CI
     runs-on: ubuntu-latest
