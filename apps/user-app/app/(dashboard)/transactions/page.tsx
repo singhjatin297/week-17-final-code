@@ -1,3 +1,3 @@
 export default function () {
-  return <div>Transactions are Completed</div>;
+  return <div>Continuous Integration</div>;
 }
